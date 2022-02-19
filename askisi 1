@@ -1,0 +1,62 @@
+import random
+step_counter= 0 
+for x in range(100):
+    board_array=[[0,0,0], [0,0,0], [0,0,0]] 
+    small_rings= 9
+    medium_rings= 9
+    large_rings= 9
+    end_game=0
+
+    while (small_rings!=0 or medium_rings!=0 or large_rings !=0) and end_game==0: 
+
+        array_coord1= random.randrange(3)       #gives random array coord between 0 and 2
+        array_coord2=random.randrange(3)        #gives other random array coord between 0 and 2
+
+        ring_choice=random.randrange(3)         #chooses random stop to place the ring
+        if ring_choice == 0 and small_rings !=0 and board_array[array_coord1][array_coord2] !=1:            
+            small_rings=small_rings-1                       
+            board_array[array_coord1][array_coord2]=1
+            step_counter= step_counter + 1
+
+        elif ring_choice == 1 and medium_rings !=0 and board_array[array_coord1][array_coord2] !=2:
+            medium_rings=medium_rings-1
+            board_array[array_coord1][array_coord2]=2
+            step_counter= step_counter + 1
+
+        elif ring_choice == 2 and large_rings !=0 and board_array[array_coord1][array_coord2] !=3:
+            large_rings=large_rings-1
+            board_array[array_coord1][array_coord2]=3
+            step_counter= step_counter + 1
+ 
+            if board_array[0][0] !=0 and board_array[0][1] !=0 and board_array[0][2] !=0 and board_array[1][0] !=0 and board_array[1][1] !=0 and board_array[1][2] !=0 and board_array[2][0] !=0 and board_array[2][1] !=0 and board_array[2][2] !=0:
+                if board_array[0][0] == board_array[0][1] == board_array[0][2] or board_array[1][0] == board_array[1][1] == board_array[1][2] or board_array[2][0] == board_array[2][1] == board_array[2][2]:
+                    end_game=1
+                if board_array[0][0] > board_array[0][1] >board_array[0][2] or board_array[1][0] > board_array[1][1] > board_array[1][2] or board_array[2][0] > board_array[2][1] > board_array[2][2]:
+                    end_game=1
+                if board_array[0][0] < board_array[0][1] <board_array[0][2] or board_array[1][0] < board_array[1][1] < board_array[1][2] or board_array[2][0] < board_array[2][1] < board_array[2][2]:
+                    end_game=1
+
+            if board_array[0][0] !=0 and board_array[1][0] !=0 and board_array[2][0] !=0 and board_array[0][1] !=0 and board_array[1][1] !=0 and board_array[2][1] !=0 and board_array[0][2] !=0 and board_array[1][2] !=0 and board_array[2][2] !=0:
+                    if board_array[0][0] == board_array[1][0] == board_array[2][0] or board_array[0][1] == board_array[1][1] == board_array[2][1] or board_array[0][2] == board_array[1][2] == board_array[2][2]:
+                        end_game=1
+                    if board_array[0][0] > board_array[1][0] >board_array[2][0] or board_array[0][1] > board_array[1][1] > board_array[2][1] or board_array[0][2] > board_array[1][2] > board_array[2][2]:
+                        end_game=1
+                    if board_array[0][0] < board_array[1][0] <board_array[2][0] or board_array[0][1] < board_array[1][1] < board_array[2][1] or board_array[0][2] < board_array[1][2] < board_array[2][2]:
+                        end_game=1
+
+            if board_array[0][0] !=0 and board_array[1][1] !=0 and board_array[2][2] !=0: 
+                if board_array[0][0] == board_array[1][1] == board_array[2][2]:
+                    end_game=1
+                if board_array[0][0] > board_array[1][1] >board_array[2][2]:
+                    end_game=1
+                if board_array[0][0] < board_array[1][1] <board_array[2][2]:
+                    end_game=1
+
+            if board_array[0][2] !=0 and board_array[1][1] !=0 and board_array[2][0] !=0: 
+                if board_array[0][2] == board_array[1][1] == board_array[2][0]:
+                    end_game=1
+                if board_array[0][2] > board_array[1][1] >board_array[2][0]:
+                    end_game=1
+                if board_array[0][2] < board_array[1][1] <board_array[2][0]:
+                    end_game=1
+print(step_counter/100)
